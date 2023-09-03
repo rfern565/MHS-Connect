@@ -56,15 +56,9 @@ class _EditScheduleWidgetState extends State<EditScheduleWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Divider(
-                    height: 35.0,
-                    thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                  ),
-                ],
+              Divider(
+                height: 30.0,
+                color: FlutterFlowTheme.of(context).primaryBackground,
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
