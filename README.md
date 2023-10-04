@@ -1,4 +1,4 @@
-# MHSApp
+# mamkconnect
 
 A new Flutter project.
 

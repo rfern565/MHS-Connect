@@ -23,6 +23,8 @@ class _PickLanguageNewWidgetState extends State<PickLanguageNewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PickLanguageNewModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -37,135 +39,131 @@ class _PickLanguageNewWidgetState extends State<PickLanguageNewWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.00, 0.00),
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Divider(
-                    height: 30.0,
-                    thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(
-                        'assets/images/Screenshot_(213).png',
-                        width: 276.0,
-                        height: 274.0,
-                        fit: BoxFit.cover,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0.00, 0.00),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/Screenshot_(213).png',
+                          width: 276.0,
+                          height: 228.0,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  Divider(
-                    height: 30.0,
-                    thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Text(
-                      FFLocalizations.of(context).getText(
-                        'o3c32dkx' /* What language do you want to u... */,
+                    Align(
+                      alignment: AlignmentDirectional(0.00, 0.00),
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          'o3c32dkx' /* What language do you want to u... */,
+                        ),
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              fontSize: 25.0,
+                            ),
                       ),
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 25.0,
-                          ),
                     ),
-                  ),
-                  Divider(
-                    height: 50.0,
-                    thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          setAppLanguage(context, 'en');
+                    Divider(
+                      height: 50.0,
+                      thickness: 1.0,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.00, 0.00),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            setAppLanguage(context, 'en');
 
-                          context.pushNamed('SignUp');
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          'vfc3ezx4' /* English */,
-                        ),
-                        options: FFButtonOptions(
-                          width: 287.0,
-                          height: 52.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                            width: 1.0,
+                            context.pushNamed('EditSchedule');
+                          },
+                          text: FFLocalizations.of(context).getText(
+                            'vfc3ezx4' /* English */,
                           ),
-                          borderRadius: BorderRadius.circular(40.0),
+                          options: FFButtonOptions(
+                            width: 287.0,
+                            height: 52.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          setAppLanguage(context, 'es');
+                    Align(
+                      alignment: AlignmentDirectional(0.00, 0.00),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            setAppLanguage(context, 'es');
 
-                          context.pushNamed('SignUp');
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          'uravd0dz' /* Español */,
-                        ),
-                        options: FFButtonOptions(
-                          width: 287.0,
-                          height: 52.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                            width: 1.0,
+                            context.pushNamed('EditSchedule');
+                          },
+                          text: FFLocalizations.of(context).getText(
+                            'uravd0dz' /* Español */,
                           ),
-                          borderRadius: BorderRadius.circular(40.0),
+                          options: FFButtonOptions(
+                            width: 287.0,
+                            height: 52.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,12 +1,13 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'edit_schedule_widget.dart' show EditScheduleWidget;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class EditScheduleModel extends FlutterFlowModel {
+class EditScheduleModel extends FlutterFlowModel<EditScheduleWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

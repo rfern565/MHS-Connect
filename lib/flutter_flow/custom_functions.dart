@@ -8,9 +8,6 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'lat_lng.dart';
 import 'place.dart';
 import 'uploaded_file.dart';
-import '/backend/backend.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import '/backend/schema/structs/index.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
 int? findDay(int? dayCount) {
@@ -547,5 +544,46 @@ String? getRemainingTime(
 }
 
 bool? checkEmail(String? input) {
+  //Check if inputted email has a mamkschools email account
   return input != null && input.contains('mamkschools.org');
+}
+
+bool? isNull(List<String>? widgetState) {
+  if (widgetState == null || widgetState.isEmpty) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool? isNullString(String? widgetState) {
+  if (widgetState == null || widgetState.isEmpty) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool? wordMatch(
+  String? appState,
+  String? clubData,
+) {
+  if (appState != null && clubData != null) {
+    return clubData.contains(appState);
+  } else if (clubData != null && clubData.contains('All Clubs')) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+String? widgetStateLog(List<String>? widgetState) {
+  return widgetState.toString();
+}
+
+bool? stringMatchCheck(
+  String? searchString,
+  String? clubString,
+) {
+  return clubString!.toLowerCase().contains(searchString!.toLowerCase());
 }

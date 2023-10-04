@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -26,6 +25,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ScheduleModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -40,148 +41,20 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(-0.05, -0.7),
+            alignment: AlignmentDirectional(-0.05, -0.70),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Divider(
-                        height: 25.0,
-                        thickness: 1.0,
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                    ],
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          width: 100.0,
-                          height: 43.0,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                          ),
-                          child: Stack(
-                            children: [
-                              if (!(Theme.of(context).brightness ==
-                                  Brightness.dark))
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: FlutterFlowIconButton(
-                                    borderColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    borderRadius: 20.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 43.0,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).accent1,
-                                    icon: Icon(
-                                      Icons.dark_mode_outlined,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                    onPressed: () async {
-                                      if ((Theme.of(context).brightness ==
-                                              Brightness.dark) !=
-                                          null) {
-                                        setDarkModeSetting(
-                                            context, ThemeMode.dark);
-                                      }
-                                    },
-                                  ),
-                                ),
-                              if (!(Theme.of(context).brightness ==
-                                  Brightness.light))
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: FlutterFlowIconButton(
-                                    borderColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    borderRadius: 20.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 40.0,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).accent1,
-                                    icon: Icon(
-                                      Icons.light_mode_outlined,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                    onPressed: () async {
-                                      if ((Theme.of(context).brightness ==
-                                              Brightness.light) !=
-                                          null) {
-                                        setDarkModeSetting(
-                                            context, ThemeMode.light);
-                                      }
-                                    },
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              '0hipbe9o' /* SCHEDULE */,
-                            ),
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                        ),
-                        Container(
-                          width: 100.0,
-                          height: 43.0,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(1.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: FlutterFlowTheme.of(context).primary,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 43.0,
-                              fillColor: FlutterFlowTheme.of(context).accent1,
-                              icon: Icon(
-                                Icons.language,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 20.0,
-                              ),
-                              onPressed: () async {
-                                context.pushNamed('PickLanguageIn');
-                              },
-                            ),
-                          ),
-                        ),
-                      ]
-                          .addToStart(SizedBox(width: 38.0))
-                          .addToEnd(SizedBox(width: 30.0)),
-                    ),
-                  ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -198,11 +71,31 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                     ],
                   ),
                   Divider(
+                    height: 20.0,
                     thickness: 1.0,
                     color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.0, -0.35),
+                    alignment: AlignmentDirectional(0.00, 0.00),
+                    child: Text(
+                      FFLocalizations.of(context).getText(
+                        '0hipbe9o' /* SCHEDULE */,
+                      ),
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ),
+                  Divider(
+                    height: 10.0,
+                    thickness: 1.0,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(0.00, -0.35),
                     child: Text(
                       valueOrDefault<String>(
                         functions.displayDate(FFAppState().DayCount),
@@ -223,7 +116,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        alignment: AlignmentDirectional(-1.00, 0.00),
                         child: Container(
                           width: 100.0,
                           height: 20.0,
@@ -232,7 +125,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
                           child: Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.00, 0.00),
                             child: Text(
                               dateTimeFormat(
                                 'jm',
@@ -252,16 +145,16 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(1.0, 0.0),
+                        alignment: AlignmentDirectional(1.00, 0.00),
                         child: Container(
-                          width: 250.0,
+                          width: 257.0,
                           height: 20.0,
                           decoration: BoxDecoration(
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
                           child: Align(
-                            alignment: AlignmentDirectional(1.0, 0.0),
+                            alignment: AlignmentDirectional(1.00, 0.00),
                             child: FutureBuilder<ApiCallResponse>(
                               future: ScheduleDayCall.call(),
                               builder: (context, snapshot) {
@@ -310,7 +203,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                     color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0.00, 0.00),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -335,8 +228,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
                             'assets/images/logo-simple.png',
-                            width: 293.0,
-                            height: 276.0,
+                            width: 299.0,
+                            height: 222.0,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -389,7 +282,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment:
+                                        AlignmentDirectional(-1.00, 0.00),
                                     child: Container(
                                       width: 180.0,
                                       height: 20.0,
@@ -399,7 +293,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -460,7 +354,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.00, 0.00),
                                     child: Container(
                                       width: 180.0,
                                       height: 20.0,
@@ -470,7 +364,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(1.0, 0.0),
+                                            AlignmentDirectional(1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -554,7 +448,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment:
+                                        AlignmentDirectional(-1.00, 0.00),
                                     child: Container(
                                       width: 180.0,
                                       height: 20.0,
@@ -564,7 +459,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -624,7 +519,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.00, 0.00),
                                     child: Container(
                                       width: 180.0,
                                       height: 20.0,
@@ -634,7 +529,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(1.0, 0.0),
+                                            AlignmentDirectional(1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -725,7 +620,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                     child: Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.00, 0.00),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: ScheduleDayCall.call(),
                                         builder: (context, snapshot) {
@@ -774,7 +669,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.00, 0.00),
                                     child: Container(
                                       width: 180.0,
                                       height: 20.0,
@@ -784,7 +679,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(1.0, 0.0),
+                                            AlignmentDirectional(1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -867,7 +762,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment:
+                                        AlignmentDirectional(-1.00, 0.00),
                                     child: Container(
                                       width: 180.0,
                                       height: 20.0,
@@ -877,7 +773,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -938,7 +834,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.00, 0.00),
                                     child: Container(
                                       width: 180.0,
                                       height: 20.0,
@@ -948,7 +844,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(1.0, 0.0),
+                                            AlignmentDirectional(1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -1031,7 +927,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment:
+                                        AlignmentDirectional(-1.00, 0.00),
                                     child: Container(
                                       width: 210.0,
                                       height: 20.0,
@@ -1041,7 +938,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -1095,7 +992,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.00, 0.00),
                                     child: Container(
                                       width: 150.0,
                                       height: 20.0,
@@ -1105,7 +1002,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(1.0, 0.0),
+                                            AlignmentDirectional(1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -1196,7 +1093,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                     child: Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.00, 0.00),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: ScheduleDayCall.call(),
                                         builder: (context, snapshot) {
@@ -1252,7 +1149,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.00, 0.00),
                                     child: Container(
                                       width: 180.0,
                                       height: 20.0,
@@ -1262,7 +1159,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(1.0, 0.0),
+                                            AlignmentDirectional(1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -1353,7 +1250,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                     child: Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.00, 0.00),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: ScheduleDayCall.call(),
                                         builder: (context, snapshot) {
@@ -1410,7 +1307,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.00, 0.00),
                                     child: Container(
                                       width: 180.0,
                                       height: 20.0,
@@ -1420,7 +1317,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(1.0, 0.0),
+                                            AlignmentDirectional(1.00, 0.00),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ScheduleDayCall.call(),
                                           builder: (context, snapshot) {
@@ -1446,7 +1343,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                             final textScheduleDayResponse =
                                                 snapshot.data!;
                                             return Text(
-                                              functions.checkSixthClassTime(
+                                              functions.checkFifthClassTime(
                                                   (ScheduleDayCall
                                                               .scheduleDayGet(
                                                 textScheduleDayResponse
@@ -1511,7 +1408,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                     ),
                                     child: Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.00, 0.00),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: ScheduleDayCall.call(),
                                         builder: (context, snapshot) {
@@ -1574,7 +1471,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                           .primaryBackground,
                                     ),
                                     child: Align(
-                                      alignment: AlignmentDirectional(1.0, 0.0),
+                                      alignment:
+                                          AlignmentDirectional(1.00, 0.00),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: ScheduleDayCall.call(),
                                         builder: (context, snapshot) {

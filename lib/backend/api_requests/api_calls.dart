@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import '../../flutter_flow/flutter_flow_util.dart';
-
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
@@ -21,7 +20,7 @@ class ScheduleDayCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
-      cache: false,
+      cache: true,
     );
   }
 
@@ -29,6 +28,71 @@ class ScheduleDayCall {
         response,
         r'''$..ScheduleDay''',
         true,
+      );
+}
+
+class ClubHubDataCall {
+  static Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'ClubHub Data',
+      apiUrl:
+          'https://script.google.com/macros/s/AKfycbxtfWDEXx1pJDSsP7vnLIq7Ig9hHeOmrNefN11k6jcn2c6rPH4IFPw1JdMYe9DI89mm/exec',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: true,
+    );
+  }
+
+  static dynamic getClubName(dynamic response) => getJsonField(
+        response,
+        r'''$[:].ClubName''',
+        true,
+      );
+  static dynamic getClubDescription(dynamic response) => getJsonField(
+        response,
+        r'''$[:].ClubDescription''',
+        true,
+      );
+  static dynamic getClassroomCode(dynamic response) => getJsonField(
+        response,
+        r'''$[:].ClassroomCode''',
+        true,
+      );
+  static dynamic getClubType(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Type''',
+        true,
+      );
+  static dynamic getAll(dynamic response) => getJsonField(
+        response,
+        r'''$[:]''',
+        true,
+      );
+}
+
+class ManageMessageCall {
+  static Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'manageMessage',
+      apiUrl:
+          'https://script.google.com/macros/s/AKfycbwlJ73yl2q-da-mPNfKZSozYcT8jmwQ_ge52Kq9NEH6SuuAJfw0GRGwdZfttRpIPDOv/exec',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static dynamic getMessage(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Message''',
       );
 }
 

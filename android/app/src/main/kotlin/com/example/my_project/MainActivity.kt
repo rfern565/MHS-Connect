@@ -1,4 +1,4 @@
-package com.mycompany.mhsapp
+package org.mamkschools.mamkconnect
 
 import io.flutter.embedding.android.FlutterActivity
 

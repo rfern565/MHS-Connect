@@ -48,6 +48,50 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000534795732:android:479dd8d4f27caa6ad26241",
+        "android_client_info": {
+          "package_name": "org.mamkschools.mamkconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000534795732-k628hoglnmes2ntrqn9u2m2cq5pu1fmh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.mamkschools.mamkconnect",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "1000534795732-slsv7328c0j0l09lnaf1qd61aimkqm33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0zGN5-_pBk-GbHdTnOr6XMBQIIb5zfq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000534795732-slsv7328c0j0l09lnaf1qd61aimkqm33.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1000534795732-h51g02hpo25lutd9ame3eftudlncg8rb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.mhsapp"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

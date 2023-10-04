@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>MHSApp</string>
+	<string>mamkconnect</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleLocalizations</key>
@@ -33,7 +33,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>com.googleusercontent.apps.1000534795732-h51g02hpo25lutd9ame3eftudlncg8rb</string>
+                <string>com.googleusercontent.apps.1000534795732-k4ukbj5odnssq2oc27ssoo2lah8st5nt</string>
                 
             </array>
         </dict>
@@ -42,10 +42,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>mhsapp.com</string>
+        <string>mamkconnect.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>mhsapp</string>
+        <string>mamkconnect</string>
         </array>
         </dict>
     </array>
@@ -59,8 +59,7 @@
 	<true/>
 
 
-	<key>PermissionGroupNotification</key>
-    <string>Turning on Notifications allows us to notify you directly if there are any important alerts regarding MHS Connect.</string>
+
 
 
 	<key>UILaunchStoryboardName</key>

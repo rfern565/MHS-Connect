@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1000534795732-h51g02hpo25lutd9ame3eftudlncg8rb.apps.googleusercontent.com</string>
+	<string>1000534795732-k4ukbj5odnssq2oc27ssoo2lah8st5nt.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1000534795732-h51g02hpo25lutd9ame3eftudlncg8rb</string>
+	<string>com.googleusercontent.apps.1000534795732-k4ukbj5odnssq2oc27ssoo2lah8st5nt</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>1000534795732-fqg2u94bqpqn77f5laerq66d8voh70kb.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mycompany.mhsapp</string>
+	<string>org.mamkschools.mamkconnect</string>
 	<key>PROJECT_ID</key>
 	<string>mhs-app-a1568</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1000534795732:ios:88487c4cffc7e74cd26241</string>
+	<string>1:1000534795732:ios:1b3801a58b3bb8d8d26241</string>
 </dict>
 </plist>

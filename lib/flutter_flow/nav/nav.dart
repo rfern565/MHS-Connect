@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
-import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
+import 'package:provider/provider.dart';
 
 import '../../auth/base_auth_user_provider.dart';
 
@@ -79,19 +78,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : PickLanguageNewWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : ClubHubExploreWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? NavBarPage()
-              : PickLanguageNewWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? NavBarPage() : ClubHubExploreWidget(),
         ),
         FFRoute(
           name: 'ClubHubExplore',
           path: '/clubHubExplore',
-          builder: (context, params) => ClubHubExploreWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'ClubHubExplore')
+              : ClubHubExploreWidget(),
         ),
         FFRoute(
           name: 'Schedule',
@@ -101,83 +101,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : ScheduleWidget(),
         ),
         FFRoute(
-          name: 'Announcements',
-          path: '/announcements',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Announcements')
-              : AnnouncementsWidget(),
-        ),
-        FFRoute(
           name: 'EditSchedule',
           path: '/editSchedule',
           builder: (context, params) => EditScheduleWidget(),
         ),
         FFRoute(
-          name: 'Profile',
-          path: '/profile',
-          builder: (context, params) => ProfileWidget(),
-        ),
-        FFRoute(
           name: 'Support',
           path: '/support',
           builder: (context, params) => SupportWidget(),
-        ),
-        FFRoute(
-          name: 'JoinedClubs',
-          path: '/joinedClubs',
-          builder: (context, params) => JoinedClubsWidget(),
-        ),
-        FFRoute(
-          name: 'ClubSchedule',
-          path: '/clubSchedule',
-          builder: (context, params) => ClubScheduleWidget(),
-        ),
-        FFRoute(
-          name: 'SignUp',
-          path: '/signUp',
-          builder: (context, params) => SignUpWidget(),
-        ),
-        FFRoute(
-          name: 'Login',
-          path: '/login',
-          builder: (context, params) => LoginWidget(),
-        ),
-        FFRoute(
-          name: 'PickGrade',
-          path: '/pickGrade',
-          builder: (context, params) => PickGradeWidget(),
-        ),
-        FFRoute(
-          name: 'NotificationSelect',
-          path: '/notificationSelect',
-          builder: (context, params) => NotificationSelectWidget(),
-        ),
-        FFRoute(
-          name: 'SuccessfulAccCreation',
-          path: '/successfulAccCreation',
-          builder: (context, params) => SuccessfulAccCreationWidget(),
-        ),
-        FFRoute(
-          name: 'ForgotPassword',
-          path: '/forgotPassword',
-          builder: (context, params) => ForgotPasswordWidget(),
-        ),
-        FFRoute(
-          name: 'ReenterPassword',
-          path: '/reenterPassword',
-          builder: (context, params) => ReenterPasswordWidget(),
-        ),
-        FFRoute(
-          name: 'PasswordChanged',
-          path: '/passwordChanged',
-          builder: (context, params) => PasswordChangedWidget(),
-        ),
-        FFRoute(
-          name: 'ClubHubNotYet',
-          path: '/clubHubNotYet',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'ClubHubNotYet')
-              : ClubHubNotYetWidget(),
         ),
         FFRoute(
           name: 'PickLanguageNew',
@@ -188,9 +119,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'PickLanguageIn',
           path: '/pickLanguageIn',
           builder: (context, params) => PickLanguageInWidget(),
+        ),
+        FFRoute(
+          name: 'Settings',
+          path: '/settings',
+          builder: (context, params) => SettingsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
-      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {
@@ -307,7 +242,6 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
-    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -321,8 +255,11 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList,
-        collectionNamePath: collectionNamePath);
+    return deserializeParam<T>(
+      param,
+      type,
+      isList,
+    );
   }
 }
 
@@ -355,7 +292,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/pickLanguageNew';
+            return '/clubHubExplore';
           }
           return null;
         },
@@ -414,4 +351,24 @@ class TransitionInfo {
   final Alignment? alignment;
 
   static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+}
+
+class RootPageContext {
+  const RootPageContext(this.isRootPage, [this.errorRoute]);
+  final bool isRootPage;
+  final String? errorRoute;
+
+  static bool isInactiveRootPage(BuildContext context) {
+    final rootPageContext = context.read<RootPageContext?>();
+    final isRootPage = rootPageContext?.isRootPage ?? false;
+    final location = GoRouter.of(context).location;
+    return isRootPage &&
+        location != '/' &&
+        location != rootPageContext?.errorRoute;
+  }
+
+  static Widget wrap(Widget child, {String? errorRoute}) => Provider.value(
+        value: RootPageContext(true, errorRoute),
+        child: child,
+      );
 }

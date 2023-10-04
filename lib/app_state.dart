@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:csv/csv.dart';
@@ -8,13 +6,17 @@ import 'package:synchronized/synchronized.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
-  static final FFAppState _instance = FFAppState._internal();
+  static FFAppState _instance = FFAppState._internal();
 
   factory FFAppState() {
     return _instance;
   }
 
   FFAppState._internal();
+
+  static void reset() {
+    _instance = FFAppState._internal();
+  }
 
   Future initializePersistedState() async {
     secureStorage = FlutterSecureStorage();
@@ -183,6 +185,12 @@ class FFAppState extends ChangeNotifier {
   String get emailWorks => _emailWorks;
   set emailWorks(String _value) {
     _emailWorks = _value;
+  }
+
+  String _ClubSearch = '';
+  String get ClubSearch => _ClubSearch;
+  set ClubSearch(String _value) {
+    _ClubSearch = _value;
   }
 }
 

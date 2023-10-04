@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class MHSAppFirebaseUser extends BaseAuthUser {
-  MHSAppFirebaseUser(this.user);
+class MamkconnectFirebaseUser extends BaseAuthUser {
+  MamkconnectFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -47,17 +47,18 @@ class MHSAppFirebaseUser extends BaseAuthUser {
 
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
-  static BaseAuthUser fromFirebaseUser(User? user) => MHSAppFirebaseUser(user);
+  static BaseAuthUser fromFirebaseUser(User? user) =>
+      MamkconnectFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> mHSAppFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> mamkconnectFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = MHSAppFirebaseUser(user);
+        currentUser = MamkconnectFirebaseUser(user);
         return currentUser!;
       },
     );

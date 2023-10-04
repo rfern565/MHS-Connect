@@ -1,6 +1,7 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,6 +25,8 @@ class _SupportWidgetState extends State<SupportWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SupportModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -38,7 +41,9 @@ class _SupportWidgetState extends State<SupportWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -62,18 +67,18 @@ class _SupportWidgetState extends State<SupportWidget> {
                       color: FlutterFlowTheme.of(context).accent4,
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.00, 0.00),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('Profile');
+                          context.pushNamed('ClubHubExplore');
                         },
                         child: Icon(
                           Icons.chevron_left,
-                          color: Colors.black,
+                          color: FlutterFlowTheme.of(context).primaryText,
                           size: 50.0,
                         ),
                       ),
@@ -84,7 +89,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                       color: FlutterFlowTheme.of(context).accent4,
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, -0.65),
+                      alignment: AlignmentDirectional(0.00, -0.65),
                       child: Text(
                         FFLocalizations.of(context).getText(
                           'stsf9we8' /* Support */,
@@ -110,14 +115,14 @@ class _SupportWidgetState extends State<SupportWidget> {
                     children: [
                       Divider(
                         thickness: 1.0,
-                        color: Colors.black,
+                        color: FlutterFlowTheme.of(context).primaryText,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             13.0, 10.0, 13.0, 10.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            '8s0nue7v' /* How do I sign up for a Club or... */,
+                            '8s0nue7v' /* How do I sign up for a Club? */,
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
@@ -131,7 +136,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                             13.0, 10.0, 13.0, 10.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            '9wj519g7' /* Simply click the join button n... */,
+                            '9wj519g7' /* Click anywhere on the box repr... */,
                           ),
                           style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
@@ -139,36 +144,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                       Divider(
                         height: 30.0,
                         thickness: 1.0,
-                        color: Colors.black,
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            13.0, 10.0, 13.0, 10.0),
-                        child: Text(
-                          FFLocalizations.of(context).getText(
-                            'lqr6hu2w' /* Where can I see my clubs? */,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            13.0, 10.0, 13.0, 10.0),
-                        child: Text(
-                          FFLocalizations.of(context).getText(
-                            'jkatt9v0' /* Simply click on your profile i... */,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                        ),
-                      ),
-                      Divider(
-                        height: 30.0,
-                        thickness: 1.0,
-                        color: Colors.black,
+                        color: FlutterFlowTheme.of(context).primaryText,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -194,30 +170,16 @@ class _SupportWidgetState extends State<SupportWidget> {
                           style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            15.0, 0.0, 15.0, 0.0),
-                        child: FlutterFlowVideoPlayer(
-                          path:
-                              'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4',
-                          videoType: VideoType.network,
-                          autoPlay: false,
-                          looping: true,
-                          showControls: true,
-                          allowFullScreen: true,
-                          allowPlaybackSpeedMenu: false,
-                        ),
-                      ),
                       Divider(
                         thickness: 1.0,
-                        color: Colors.black,
+                        color: FlutterFlowTheme.of(context).primaryText,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             13.0, 10.0, 13.0, 10.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            'ftiqa3pc' /* If I sign up for a Club or SLG... */,
+                            'hkjfu788' /* Message from us */,
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
@@ -229,40 +191,36 @@ class _SupportWidgetState extends State<SupportWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             13.0, 10.0, 13.0, 10.0),
-                        child: Text(
-                          FFLocalizations.of(context).getText(
-                            'pj6ukxxl' /* No, you are merely expressing ... */,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        child: FutureBuilder<ApiCallResponse>(
+                          future: ManageMessageCall.call(),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 15.0,
+                                  height: 15.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                            final textManageMessageResponse = snapshot.data!;
+                            return Text(
+                              ManageMessageCall.getMessage(
+                                textManageMessageResponse.jsonBody,
+                              ).toString(),
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            );
+                          },
                         ),
                       ),
                       Divider(
                         thickness: 1.0,
-                        color: Colors.black,
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            13.0, 10.0, 13.0, 10.0),
-                        child: Text(
-                          FFLocalizations.of(context).getText(
-                            'ofsgpaek' /* Do I have to apply or audition... */,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            13.0, 10.0, 13.0, 10.0),
-                        child: Text(
-                          FFLocalizations.of(context).getText(
-                            'lhh4qkrv' /* Most clubs at MHS are open to ... */,
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                        ),
+                        color: FlutterFlowTheme.of(context).primaryText,
                       ),
                     ],
                   ),
