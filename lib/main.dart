@@ -135,8 +135,8 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Schedule': ScheduleWidget(),
       'ClubHubExplore': ClubHubExploreWidget(),
+      'Schedule': ScheduleWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -164,21 +164,21 @@ class _NavBarPageState extends State<NavBarPage> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.calendar_today_outlined,
-                size: 24.0,
-              ),
-              label: FFLocalizations.of(context).getText(
-                'gbfulypy' /* Schedule */,
-              ),
-              tooltip: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
                 Icons.search,
                 size: 24.0,
               ),
               label: FFLocalizations.of(context).getText(
                 'ud198u14' /* ClubHubExplore */,
+              ),
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.calendar_today_outlined,
+                size: 24.0,
+              ),
+              label: FFLocalizations.of(context).getText(
+                'gbfulypy' /* Schedule */,
               ),
               tooltip: '',
             )
