@@ -1,5 +1,4 @@
-# mamkconnect
+This is a Flutter project created with Flutterflow to create a dual purpose club hub 
+and scheduling site incorporating google translate features for Mamaroneck High School.
 
-Flutter project to create a club hub and scheduling site for MHS.
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
